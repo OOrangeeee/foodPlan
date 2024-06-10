@@ -1,0 +1,26 @@
+frame:
+（1）public JFrame() throws HeadlessException	，创建窗体对象；
+（2）public JFrame(Sting title) throws HeadlessEcception，创建有标题的窗体对象；
+（3）public void setVisble(Boolean b)，显示或隐藏窗体；
+（4）public Component add(Component comp)，向窗体增加组件；
+（5）public void setLayout(LayoutManager mgr)，设置布局管理器；
+（6）public Container getContentPane()，返回窗体的容器；
+（7）public void setSize(int width,int height)，设置窗体大小；
+（8）public void setSize(Dimension d)	，通过Dimension设置窗体大小；
+（9）public void setBackground(Color c)，设置窗体背景颜色；
+（10）public void setLocation(int x,int y)，设置窗体位置；
+（12）public void pack()，自动调整窗体大小。
+
+label:
+（1）public static final int LEFT，标签文本左对齐；
+（2）public static final int CENTER，标签文本居中对齐；
+（3）public static final int RIGHT，标签文本右对齐；
+（4）public JLabel() throws HeadlessException，创建标签对象；
+（5）public JLabel(String text) throws HeadlessException，创建标签并指定文本内容；
+（6）public JLabel(String text,int alignment) throws HeadlessException，创建标签并指定文本内容以及对齐方式；
+（7）public JLabel(String text,Icon icon,int horizontalAlignment) ，创建包含指定文本、图像和对齐方式标签；
+（8）public String getText()	，取得标签文本；
+（9）public void setText(String text)，设置标签文本；
+（10）public void setAlignment(int alignment)，设置标签文本对齐方式；
+（11）public void setIcon(Icon icon)，设置标签图像。
+
