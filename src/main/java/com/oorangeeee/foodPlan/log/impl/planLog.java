@@ -7,13 +7,14 @@ import java.io.File;
 /**
  * @author 晋晨曦
  */
-public class featureLog implements log {
-    private final String logPath = "./log/featureLog.txt";
+public class planLog implements log {
+
+    private final String logPath = "./log/planLog.txt";
     private int infoCounts;
     private int errorCounts;
     private int panicCounts;
 
-    public featureLog() {
+    public planLog() {
         File logFile = new File(logPath);
         if (!logFile.exists()) {
             try {
@@ -38,7 +39,7 @@ public class featureLog implements log {
         try {
             // 日志格式：时间 日志等级 日志内容
             logContent = "===============================\n" +
-                    "Feature\n" +
+                    "Plan\n" +
                     java.time.LocalDateTime.now() + "\n" +
                     logLevelMap.get(logLevel) + "\n" +
                     logContent + "\n";
@@ -92,7 +93,7 @@ public class featureLog implements log {
 
     @Override
     public String toString() {
-        return "现有Feature日志：\n" +
+        return "现有Plan日志：\n" +
                 "info日志数量：" + infoCounts + "\n" +
                 "error日志数量：" + errorCounts + "\n" +
                 "panic日志数量：" + panicCounts + "\n";
@@ -101,8 +102,8 @@ public class featureLog implements log {
     @Override
     public boolean equals(Object obj) {
         // java14后引入的语法糖，instanceof后面可以直接跟变量名
-        if (obj instanceof featureLog featureLogObj) {
-            return this.infoCounts == featureLogObj.infoCounts && this.errorCounts == featureLogObj.errorCounts && this.panicCounts == featureLogObj.panicCounts;
+        if (obj instanceof planLog planLogObj) {
+            return this.infoCounts == planLogObj.infoCounts && this.errorCounts == planLogObj.errorCounts && this.panicCounts == planLogObj.panicCounts;
         }
         return false;
     }
