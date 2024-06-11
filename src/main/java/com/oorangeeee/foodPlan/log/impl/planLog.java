@@ -22,9 +22,6 @@ public class planLog implements log {
             try {
                 boolean ifCreateLogFileParent = logFile.getParentFile().mkdirs();
                 boolean ifCreateLogFile = logFile.createNewFile();
-                if (!ifCreateLogFile || !ifCreateLogFileParent) {
-                    System.out.println("日志文件已存在");
-                }
             } catch (Exception e) {
                 System.out.println("日志文件创建失败");
                 System.exit(1);

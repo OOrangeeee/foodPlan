@@ -73,7 +73,6 @@ public class run {
         config.defaultConfig();
         foodLists foodList = new foodList();
         String iconPath = config.getConfig("iconPath");
-        System.out.println(iconPath);
         // 读取图标文件
         Image icon = null;
         try {
@@ -81,7 +80,6 @@ public class run {
         } catch (IOException e) {
             guiLog.writeLog("读取图标文件失败", guiLog.ERROR);
         }
-        System.out.println(icon);
         // 创建主窗口
         JFrame frame = new JFrame("好吃果园");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
