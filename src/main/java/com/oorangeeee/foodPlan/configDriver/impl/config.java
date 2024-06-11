@@ -28,7 +28,8 @@ public class config implements configDriver, FileSerializable {
 
     @Override
     public void defaultConfig() {
-        this.addConfig("savePath", "data/data.dat");
+        this.addConfig("savePath", config.PROJECT_HOME_DIR+"/data/data.dat");
+        this.addConfig("iconPath", config.PROJECT_HOME_DIR+"/icon.png");
     }
 
     private void initConfigs() {

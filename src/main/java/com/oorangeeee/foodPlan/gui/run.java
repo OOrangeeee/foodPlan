@@ -10,10 +10,12 @@ import com.oorangeeee.foodPlan.feature.food.impl.foodList;
 import com.oorangeeee.foodPlan.log.impl.guiLog;
 import com.oorangeeee.foodPlan.log.log;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.io.Serial;
 import java.util.ArrayList;
 import java.util.function.Consumer;
@@ -24,7 +26,7 @@ import java.util.function.Consumer;
  */
 public class run {
 
-    private final log guiLog = new guiLog();
+    private static final log guiLog = new guiLog();
     private static final configDriver config = new config();
     private static final guiConfig configGui = new guiConfig();
 
@@ -70,11 +72,26 @@ public class run {
         System.setProperty("sun.java2d.noddraw", "true");
         config.defaultConfig();
         foodLists foodList = new foodList();
+        String iconPath = config.getConfig("iconPath");
+        System.out.println(iconPath);
+        // 读取图标文件
+        Image icon = null;
+        try {
+            icon = ImageIO.read(new File(iconPath));
+        } catch (IOException e) {
+            guiLog.writeLog("读取图标文件失败", guiLog.ERROR);
+        }
+        System.out.println(icon);
         // 创建主窗口
-        JFrame frame = new JFrame("水果乐园-吃什么");
+        JFrame frame = new JFrame("好吃果园");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1600, 800);
         frame.setLocationRelativeTo(null);
+
+        // 设置图标
+        if (icon != null) {
+            frame.setIconImage(icon);
+        }
 
         // 创建CardLayout布局管理器
         CardLayout cardLayout = new CardLayout();
@@ -370,10 +387,14 @@ public class run {
         searchReturnButton.addActionListener(e -> cardLayout.show(frame.getContentPane(), "menuPanel"));
 
         // 创建显示检索结果的小窗口
+        Image finalIcon = icon;
         Consumer<foods[]> showFoodListInfo = (foods[] foodArray) -> {
             JDialog infoDialog = new JDialog();
             infoDialog.setTitle("菜品信息");
             infoDialog.setSize(400, 400);
+            if (finalIcon != null) {
+                infoDialog.setIconImage(finalIcon);
+            }
             infoDialog.setLocationRelativeTo(null);
 
             JPanel foodPanel = new JPanel();
