@@ -3,6 +3,8 @@ package com.oorangeeee.foodPlan.log.impl;
 import com.oorangeeee.foodPlan.log.log;
 
 import java.io.File;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 /**
  * @author 晋晨曦
@@ -110,5 +112,29 @@ public class foodLog implements log {
     @Override
     public int hashCode() {
         return super.hashCode();
+    }
+
+    @Override
+    public void writeObject(ObjectOutputStream out) {
+        try {
+            out.writeObject(infoCounts);
+            out.writeObject(errorCounts);
+            out.writeObject(panicCounts);
+        } catch (Exception e) {
+            System.out.println("日志写入失败");
+            System.exit(1);
+        }
+    }
+
+    @Override
+    public void readObject(ObjectInputStream in) {
+        try {
+            infoCounts = (int) in.readObject();
+            errorCounts = (int) in.readObject();
+            panicCounts = (int) in.readObject();
+        } catch (Exception e) {
+            System.out.println("日志写入失败");
+            System.exit(1);
+        }
     }
 }
