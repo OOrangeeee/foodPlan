@@ -1,11 +1,13 @@
 package com.oorangeeee.foodPlan.feature.food;
 
+import com.oorangeeee.foodPlan.serializable.FileSerializable;
+
 import java.io.File;
 
 /**
  * @author 晋晨曦
  */
-public interface foods {
+public interface foods extends FileSerializable {
     // 一个接口，定义了食物的属性
     // 1. 食物的名字
     // 2. 早午晚餐，下午茶，零食，加餐（多选）
