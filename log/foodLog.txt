@@ -1,0 +1,12 @@
+===============================
+Food
+2024-06-11T16:19:43.293251100
+PANIC
+保存食物列表失败:
+E:\Java\foodPlan\data\foodList.dat
+===============================
+Food
+2024-06-11T16:26:18.234691100
+PANIC
+序列化食物列表失败:
+com.oorangeeee.foodPlan.log.impl.foodLog

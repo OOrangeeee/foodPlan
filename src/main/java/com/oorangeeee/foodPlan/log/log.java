@@ -1,11 +1,13 @@
 package com.oorangeeee.foodPlan.log;
 
+import com.oorangeeee.foodPlan.serializable.FileSerializable;
+
 import java.util.Map;
 
 /**
  * @author 晋晨曦
  */
-public interface log {
+public interface log extends FileSerializable {
     int INFO = 0;
     int ERROR = 1;
     int PANIC = 2;
