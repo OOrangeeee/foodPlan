@@ -1,13 +1,11 @@
 package com.oorangeeee.foodPlan.feature.food;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.File;
 
 /**
  * @author 晋晨曦
  */
-public interface food {
+public interface foods {
     // 一个接口，定义了食物的属性
     // 1. 食物的名字
     // 2. 早午晚餐，下午茶，零食，加餐（多选）
@@ -17,8 +15,8 @@ public interface food {
     // 返回的时候再分割成数组
     // 同理在set的时候也是接受一个字符串
     // 此类必须实现序列化接口，以便于存储
-    String[] timeType = {"早餐", "午餐", "晚餐", "下午茶", "零食", "加餐"};
-    String[] foodType = {"面食", "蒸点", "炒菜", "汤", "饮料", "水果", "火锅", "烧烤", "快餐", "轻食", "甜品", "蔬菜", "油炸食品", "烘焙", "米饭", "零食"};
+    String[] TIME_TYPES = {"早餐", "午餐", "晚餐", "下午茶", "零食", "加餐"};
+    String[] FOOD_TYPES = {"面食", "蒸点", "炒菜", "汤", "饮料", "水果", "火锅", "烧烤", "快餐", "轻食", "甜品", "蔬菜", "油炸食品", "烘焙", "米饭", "零食"};
 
     // getter and setter
 
@@ -30,5 +28,7 @@ public interface food {
     void setFoodType(String foodType);
     String getRemark();
     void setRemark(String remark);
+    void save(File file);
+    void load(File file);
 
 }
