@@ -30,7 +30,7 @@ public class config implements configDriver, FileSerializable {
         File configFile = new File(CONFIG_PATH);
         if (configFile.exists()) {
             load(configFile);
-        }else{
+        } else {
             try {
                 boolean ifCreateConfigFileParent = configFile.getParentFile().mkdirs();
                 boolean ifCreateConfigFile = configFile.createNewFile();
@@ -47,7 +47,7 @@ public class config implements configDriver, FileSerializable {
     @Override
     public String getConfig(String key) {
         load(new File(CONFIG_PATH));
-        if(!configMap.containsKey(key)){
+        if (!configMap.containsKey(key)) {
             configLog.writeLog("获取配置失败:配置不存在", log.ERROR);
         }
         return configMap.get(key);
@@ -55,7 +55,7 @@ public class config implements configDriver, FileSerializable {
 
     @Override
     public boolean addConfig(String key, String value) {
-        if(configMap.containsKey(key)){
+        if (configMap.containsKey(key)) {
             configLog.writeLog("添加配置失败:配置已存在", log.ERROR);
             return false;
         }
@@ -66,7 +66,7 @@ public class config implements configDriver, FileSerializable {
 
     @Override
     public boolean updateConfig(String key, String value) {
-        if(!configMap.containsKey(key)){
+        if (!configMap.containsKey(key)) {
             configLog.writeLog("更新配置失败:配置不存在", log.ERROR);
             return false;
         }
@@ -77,7 +77,7 @@ public class config implements configDriver, FileSerializable {
 
     @Override
     public boolean deleteConfig(String key) {
-        if(!configMap.containsKey(key)){
+        if (!configMap.containsKey(key)) {
             configLog.writeLog("删除配置失败:配置不存在", log.ERROR);
             return false;
         }
@@ -120,5 +120,26 @@ public class config implements configDriver, FileSerializable {
         } catch (Exception e) {
             configLog.writeLog("反序列化配置文件失败:\n" + e.getMessage(), log.PANIC);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "config{\n" +
+                "configMap=\n" +
+                configMap +
+                "}";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof config configObj) {
+            return this.configMap.equals(configObj.configMap);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return configMap.hashCode();
     }
 }
