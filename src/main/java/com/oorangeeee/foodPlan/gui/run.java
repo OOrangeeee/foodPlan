@@ -1,4 +1,3 @@
-// -*- coding: utf-8 -*-
 package com.oorangeeee.foodPlan.gui;
 
 import com.oorangeeee.foodPlan.configDriver.configDriver;
@@ -22,6 +21,9 @@ import java.util.function.Consumer;
 
 
 /**
+ * 主类，负责启动程序和创建GUI界面
+ * 包含主方法和所有GUI组件的初始化和事件处理
+ *
  * @author 晋晨曦
  */
 public class run {
@@ -31,7 +33,9 @@ public class run {
     private static final guiConfig configGui = new guiConfig();
 
 
-    // 重写JTextField的paintComponent()方法：重绘缓存。解决Java Swing 使用idea输入中文，出现白板。
+    /**
+     * 自定义 JTextField 类，解决在 Swing 中使用 IDEA 输入中文时出现白板的问题
+     */
     public static class JTextField2 extends JTextField {
         @Serial
         private static final long serialVersionUID = 1L;
@@ -68,6 +72,11 @@ public class run {
         }
     }
 
+    /**
+     * 主方法，负责启动应用程序并创建主窗口和各个面板
+     *
+     * @param args 命令行参数
+     */
     public static void main(String[] args) {
         System.setProperty("sun.java2d.noddraw", "true");
         config.defaultConfig();
@@ -573,6 +582,9 @@ public class run {
 
 }
 
+/**
+ * GUI配置类，负责字体的添加和管理
+ */
 class guiConfig {
 
     private final log guiLog = new guiLog();
@@ -581,9 +593,18 @@ class guiConfig {
 
     private final ArrayList<String> fontList = new ArrayList<String>();
 
+    /**
+     * 构造函数
+     */
     public guiConfig() {
     }
 
+    /**
+     * 添加自定义字体
+     *
+     * @param fontPath 字体文件路径
+     * @return 字体名称
+     */
     public String addFont(String fontPath) {
         try {
             Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File(fontPath));
@@ -597,6 +618,14 @@ class guiConfig {
         return null;
     }
 
+    /**
+     * 获取字体
+     *
+     * @param fontName 字体名称
+     * @param fontSize 字体大小
+     * @param fontStyle 字体样式
+     * @return Font 对象
+     */
     public Font getFont(String fontName, int fontSize, int fontStyle) {
         if (fontList.contains(fontName)) {
             return new Font(fontName, fontStyle, fontSize);
