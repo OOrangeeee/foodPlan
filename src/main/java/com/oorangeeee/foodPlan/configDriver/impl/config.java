@@ -35,7 +35,7 @@ public class config implements configDriver, FileSerializable {
                 boolean ifCreateConfigFileParent = configFile.getParentFile().mkdirs();
                 boolean ifCreateConfigFile = configFile.createNewFile();
                 if (!ifCreateConfigFile || !ifCreateConfigFileParent) {
-                    configLog.writeLog("初始化配置文件失败", log.PANIC);
+                    configLog.writeLog("配置文件已存在，无需初始化", log.ERROR);
                 }
                 save(configFile);
             } catch (Exception e) {
