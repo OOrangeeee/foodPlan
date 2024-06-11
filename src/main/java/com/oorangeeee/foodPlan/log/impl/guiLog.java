@@ -40,7 +40,7 @@ public class guiLog implements log {
             logContent = "===============================\n" +
                     "Gui\n" +
                     java.time.LocalDateTime.now() + "\n" +
-                    logLevelMap.get(logLevel) + "\n" +
+                    LOG_LEVEL_MAP.get(logLevel) + "\n" +
                     logContent + "\n";
             java.io.FileWriter fileWriter = new java.io.FileWriter(logPath, true);
             fileWriter.write(logContent);
