@@ -13,24 +13,28 @@ import java.nio.file.Files;
 /**
  * @author 晋晨曦
  */
-public class food implements foods, FileSerializable{
+public class food implements foods, FileSerializable {
     private final log foodLog = new foodLog();
     private String foodName;
     private String timeType;
     private String foodType;
     private String remark;
-    public food(){
+    private String foodImage;
+
+    public food() {
         foodName = "未知食物";
         timeType = "未知餐点类型";
         foodType = "未知食物类型";
         remark = "";
     }
-    public food(String foodName, String timeType, String foodType, String remark){
+
+    public food(String foodName, String timeType, String foodType, String remark) {
         this.foodName = foodName;
         this.timeType = timeType;
         this.foodType = foodType;
         this.remark = remark;
     }
+
     @Override
     public String getFoodName() {
         return foodName;
@@ -72,19 +76,29 @@ public class food implements foods, FileSerializable{
     }
 
     @Override
+    public String getFoodImage() {
+        return foodImage;
+    }
+
+    @Override
+    public void setFoodImage(String foodImage) {
+        this.foodImage = foodImage;
+    }
+
+    @Override
     public void save(File file) {
-        try(ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(file.toPath()))) {
+        try (ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(file.toPath()))) {
             writeObject(out);
-        }catch (Exception e){
+        } catch (Exception e) {
             foodLog.writeLog("保存食物失败:\n" + e.getMessage(), log.PANIC);
         }
     }
 
     @Override
     public void load(File file) {
-        try(ObjectInputStream in = new ObjectInputStream(Files.newInputStream(file.toPath()))){
+        try (ObjectInputStream in = new ObjectInputStream(Files.newInputStream(file.toPath()))) {
             readObject(in);
-        }catch (Exception e){
+        } catch (Exception e) {
             foodLog.writeLog("加载食物失败:\n" + e.getMessage(), log.PANIC);
         }
     }
@@ -131,6 +145,7 @@ public class food implements foods, FileSerializable{
 
     @Override
     public int hashCode() {
-        return foodName.hashCode() + timeType.hashCode() + foodType.hashCode() + remark.hashCode();
+        String markString = foodName + timeType + foodType + remark;
+        return markString.hashCode();
     }
 }
