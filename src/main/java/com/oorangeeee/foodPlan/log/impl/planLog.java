@@ -9,14 +9,14 @@ import java.io.ObjectOutputStream;
 /**
  * @author 晋晨曦
  */
-public class guiLog implements log {
-    private final String logPath = "./log/guiLog.txt";
+public class planLog implements log {
+
+    private final String logPath = "./log/planLog.txt";
     private int infoCounts;
     private int errorCounts;
     private int panicCounts;
 
-    public guiLog() {
-        // 判断日志文件是否存在，不存在创建新文件
+    public planLog() {
         File logFile = new File(logPath);
         if (!logFile.exists()) {
             try {
@@ -35,12 +35,13 @@ public class guiLog implements log {
         panicCounts = 0;
     }
 
+    @Override
     public void writeLog(String logContent, int logLevel) {
         // 写入日志
         try {
             // 日志格式：时间 日志等级 日志内容
             logContent = "===============================\n" +
-                    "Gui\n" +
+                    "Plan\n" +
                     java.time.LocalDateTime.now() + "\n" +
                     LOG_LEVEL_MAP.get(logLevel) + "\n" +
                     logContent + "\n";
@@ -70,7 +71,7 @@ public class guiLog implements log {
         }
     }
 
-    //getter
+    // getter
 
     @Override
     public int getInfoCounts() {
@@ -94,7 +95,7 @@ public class guiLog implements log {
 
     @Override
     public String toString() {
-        return "现有Gui日志：\n" +
+        return "现有Plan日志：\n" +
                 "info日志数量：" + infoCounts + "\n" +
                 "error日志数量：" + errorCounts + "\n" +
                 "panic日志数量：" + panicCounts + "\n";
@@ -103,8 +104,8 @@ public class guiLog implements log {
     @Override
     public boolean equals(Object obj) {
         // java14后引入的语法糖，instanceof后面可以直接跟变量名
-        if (obj instanceof guiLog guiLogObj) {
-            return this.infoCounts == guiLogObj.infoCounts && this.errorCounts == guiLogObj.errorCounts && this.panicCounts == guiLogObj.panicCounts;
+        if (obj instanceof planLog planLogObj) {
+            return this.infoCounts == planLogObj.infoCounts && this.errorCounts == planLogObj.errorCounts && this.panicCounts == planLogObj.panicCounts;
         }
         return false;
     }

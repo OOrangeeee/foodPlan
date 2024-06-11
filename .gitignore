@@ -41,3 +41,12 @@ node_modules/
 
 ### Code ###
 src/main/java/com/oorangeeee/foodPlan/test/
+
+### Config ###
+config/
+
+### log ###
+log/
+
+### data ###
+data/
