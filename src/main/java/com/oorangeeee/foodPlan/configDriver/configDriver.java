@@ -9,6 +9,7 @@ public interface configDriver {
     String PROJECT_HOME_DIR= System.getProperty("user.dir");
     String CONFIG_PATH =PROJECT_HOME_DIR+"/config/config.dat";
 
+    void defaultConfig();
     String getConfig(String key);
     boolean addConfig(String key, String value);
     boolean updateConfig(String key, String value);

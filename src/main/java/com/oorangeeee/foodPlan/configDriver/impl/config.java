@@ -26,6 +26,11 @@ public class config implements configDriver, FileSerializable {
         initConfigs();
     }
 
+    @Override
+    public void defaultConfig() {
+        this.addConfig("savePath", "data/data.dat");
+    }
+
     private void initConfigs() {
         File configFile = new File(CONFIG_PATH);
         if (configFile.exists()) {

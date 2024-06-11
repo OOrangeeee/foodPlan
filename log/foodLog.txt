@@ -32,3 +32,14 @@ Food
 PANIC
 反序列化食物列表失败:
 com.oorangeeee.foodPlan.feature.food.impl.food; local class incompatible: stream classdesc serialVersionUID = -4240455621710685522, local class serialVersionUID = -9106705258214740596
+===============================
+Food
+2024-06-12T00:02:12.562982600
+PANIC
+反序列化食物列表失败:
+com.oorangeeee.foodPlan.configDriver.impl.config; local class incompatible: stream classdesc serialVersionUID = 4770041909002544929, local class serialVersionUID = -1353839722717842150
+===============================
+Food
+2024-06-12T00:12:35.783996
+ERROR
+食物列表文件已存在，无需初始化
