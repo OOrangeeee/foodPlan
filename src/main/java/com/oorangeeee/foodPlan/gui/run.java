@@ -107,7 +107,7 @@ public class run {
         // 创建欢迎页面
         JPanel welcomePanel = new JPanel(new BorderLayout());
         JLabel welcomeLabel = new JLabel("欢迎使用好吃果园!", JLabel.CENTER);
-        String cangErFont = configGui.addFont(configDriver.PROJECT_HOME_DIR + "/仓耳与墨.TTF");
+        String cangErFont = configGui.addFont(configDriver.PROJECT_HOME_DIR + "/eatFood.TTF");
         welcomeLabel.setFont(configGui.getFont(cangErFont, 75, Font.BOLD));
         JButton startButton = new JButton("开始使用");
         startButton.setFont(configGui.getFont(cangErFont, 15, Font.BOLD));
