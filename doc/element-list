@@ -1,0 +1,9 @@
+com.oorangeeee.foodPlan.configDriver
+com.oorangeeee.foodPlan.configDriver.impl
+com.oorangeeee.foodPlan.feature.food
+com.oorangeeee.foodPlan.feature.food.impl
+com.oorangeeee.foodPlan.gui
+com.oorangeeee.foodPlan.log
+com.oorangeeee.foodPlan.log.impl
+com.oorangeeee.foodPlan.serializable
+com.oorangeeee.foodPlan.test
