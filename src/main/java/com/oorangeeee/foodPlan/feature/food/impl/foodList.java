@@ -14,18 +14,33 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 
 /**
+ * 这个类表示一个食物列表，实现了foodLists接口。
+ * 它包含所有食物的集合，并提供了按餐点类型分类的方法。
+ * 提供了相应的getter和setter方法，并支持序列化和反序列化操作。
+ * 日志记录在操作失败时记录错误信息。
+ *
  * @author 晋晨曦
  */
-public class foodList implements foodLists{
+public class foodList implements foodLists {
 
+    // 存储所有食物的列表
     private ArrayList<foods> foodList;
+
+    // 分别存储早餐、午餐、晚餐和零食的列表
     private ArrayList<foods> breakfast;
     private ArrayList<foods> lunch;
     private ArrayList<foods> dinner;
     private ArrayList<foods> snack;
+
+    // 日志对象用于记录日志
     private final log foodListLog = new foodLog();
+
+    // 配置驱动对象
     private final configDriver config = new config();
 
+    /**
+     * 无参构造函数，初始化默认值
+     */
     public foodList() {
         foodList = new ArrayList<>();
         breakfast = new ArrayList<>();
@@ -35,6 +50,9 @@ public class foodList implements foodLists{
         initFoodList();
     }
 
+    /**
+     * 初始化食物列表
+     */
     private void initFoodList() {
         File foodListFile = new File(config.getConfig("savePath"));
         if (foodListFile.exists()) {
@@ -53,6 +71,11 @@ public class foodList implements foodLists{
         }
     }
 
+    /**
+     * 添加食物到食物列表中
+     *
+     * @param food 食物对象
+     */
     @Override
     public void addFood(foods food) {
         if (food == null) {
@@ -82,36 +105,67 @@ public class foodList implements foodLists{
         this.save(new File(config.getConfig("savePath")));
     }
 
+    /**
+     * 获取所有食物
+     *
+     * @return 食物数组
+     */
     @Override
     public foods[] getFoods() {
         this.load(new File(config.getConfig("savePath")));
         return foodList.toArray(new foods[0]);
     }
 
+    /**
+     * 获取早餐食物
+     *
+     * @return 早餐食物数组
+     */
     @Override
     public foods[] getBreakfast() {
         this.load(new File(config.getConfig("savePath")));
         return breakfast.toArray(new foods[0]);
     }
 
+    /**
+     * 获取午餐食物
+     *
+     * @return 午餐食物数组
+     */
     @Override
     public foods[] getLunch() {
         this.load(new File(config.getConfig("savePath")));
         return lunch.toArray(new foods[0]);
     }
 
+    /**
+     * 获取晚餐食物
+     *
+     * @return 晚餐食物数组
+     */
     @Override
     public foods[] getDinner() {
         this.load(new File(config.getConfig("savePath")));
         return dinner.toArray(new foods[0]);
     }
 
+    /**
+     * 获取零食
+     *
+     * @return 零食数组
+     */
     @Override
     public foods[] getSnack() {
         this.load(new File(config.getConfig("savePath")));
         return snack.toArray(new foods[0]);
     }
 
+    /**
+     * 按食物类型获取食物
+     *
+     * @param type 食物类型
+     * @return 对应类型的食物数组
+     */
     @Override
     public foods[] getFoodByType(String type) {
         this.load(new File(config.getConfig("savePath")));
@@ -128,6 +182,12 @@ public class foodList implements foodLists{
         return result.toArray(new foods[0]);
     }
 
+    /**
+     * 从指定列表中随机获取一个食物
+     *
+     * @param list 食物列表
+     * @return 随机食物
+     */
     private foods getRandomFood(ArrayList<foods> list) {
         if (list.isEmpty()) {
             return null;
@@ -136,30 +196,55 @@ public class foodList implements foodLists{
         return list.get(index);
     }
 
+    /**
+     * 随机获取早餐食物
+     *
+     * @return 随机早餐食物
+     */
     @Override
     public foods getBreakfastByRandom() {
         this.load(new File(config.getConfig("savePath")));
         return getRandomFood(breakfast);
     }
 
+    /**
+     * 随机获取午餐食物
+     *
+     * @return 随机午餐食物
+     */
     @Override
     public foods getLunchByRandom() {
         this.load(new File(config.getConfig("savePath")));
         return getRandomFood(lunch);
     }
 
+    /**
+     * 随机获取晚餐食物
+     *
+     * @return 随机晚餐食物
+     */
     @Override
     public foods getDinnerByRandom() {
         this.load(new File(config.getConfig("savePath")));
         return getRandomFood(dinner);
     }
 
+    /**
+     * 随机获取零食
+     *
+     * @return 随机零食
+     */
     @Override
     public foods getSnackByRandom() {
         this.load(new File(config.getConfig("savePath")));
         return getRandomFood(snack);
     }
 
+    /**
+     * 保存食物列表到文件
+     *
+     * @param file 文件对象
+     */
     @Override
     public void save(File file) {
         try (ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(file.toPath()))) {
@@ -169,6 +254,11 @@ public class foodList implements foodLists{
         }
     }
 
+    /**
+     * 从文件加载食物列表
+     *
+     * @param file 文件对象
+     */
     @Override
     public void load(File file) {
         try (ObjectInputStream in = new ObjectInputStream(Files.newInputStream(file.toPath()))) {
@@ -178,6 +268,11 @@ public class foodList implements foodLists{
         }
     }
 
+    /**
+     * 将食物列表写入输出流
+     *
+     * @param out 输出流对象
+     */
     @Override
     public void writeObject(ObjectOutputStream out) {
         try {
@@ -191,6 +286,11 @@ public class foodList implements foodLists{
         }
     }
 
+    /**
+     * 从输入流读取食物列表
+     *
+     * @param in 输入流对象
+     */
     @Override
     public void readObject(ObjectInputStream in) {
         try {
@@ -204,3 +304,4 @@ public class foodList implements foodLists{
         }
     }
 }
+

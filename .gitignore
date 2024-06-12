@@ -50,3 +50,7 @@ log/
 
 ### data ###
 data/
+
+### jar ###
+src/main/resources/
+out/
